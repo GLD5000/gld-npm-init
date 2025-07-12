@@ -81,10 +81,10 @@ function checkBin() {
   }
 }
 function kebabToCamel(kebabString) {
-  const words = kebabString.split("-");
+  const words = kebabString.trim().split("-");
   let newString = "";
   for (let i in words) {
-    if (i === 0) {
+    if (i == 0) {
       newString += words[i].toLowerCase();
     } else {
       newString +=

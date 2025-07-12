@@ -11,7 +11,7 @@ npm i -D @gld5000-cli/npm-init
 ```
 ### Import (.mjs)
 ```
-import { * as NpmInit } from '@gld5000-cli/npm-init'
+import { * as npmInit } from '@gld5000-cli/npm-init'
 ```
 ### Example Input
 ```
