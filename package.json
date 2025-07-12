@@ -1,0 +1,27 @@
+{
+  "name": "@gld5000-cli/npm-init",
+  "version": "1.0.0",
+  "description": "A CLI app to update your package.json and README.md ready for publishing on NPM",
+  "keywords": [
+    "CLI",
+    "NPM",
+    "init",
+    "readme",
+    "package"
+  ],
+  "homepage": "https://github.com/GLD5000/npm-init#readme",
+  "bugs": {
+    "url": "https://github.com/GLD5000/npm-init/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GLD5000/npm-init.git"
+  },
+  "license": "MIT",
+  "author": "GLD5000",
+  "type": "commonjs",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "node test.mjs"
+  }
+}
