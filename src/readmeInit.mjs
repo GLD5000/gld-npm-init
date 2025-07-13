@@ -1,4 +1,4 @@
-import  * as fs from "fs";
+import * as fs from "fs";
 
 function getPackageObject() {
   const packageJsonContent = getFile("./package.json");
@@ -62,7 +62,11 @@ export function readmeInit() {
     ...getScriptBlock(`npm update ${name}`),
     `## Uninstall`,
     ...getScriptBlock(`npm uninstall ${name}`),
-    hasBinExecutable ? `## Execute Directly from NPM \n${getScriptBlock(`npx ${name}`).join("\n")}`:'',
+    hasBinExecutable
+      ? `## Execute Directly from NPM \n${getScriptBlock(`npx ${name}`).join(
+          "\n"
+        )}`
+      : "",
     `## License`,
     license,
   ];
@@ -83,8 +87,8 @@ function checkBin() {
 function kebabToCamel(kebabString) {
   const words = kebabString.trim().split("-");
   let newString = "";
-  for (let i in words) {
-    if (i == 0) {
+  for (let i = 0; i < words.length; i += 1) {
+    if (i === 0) {
       newString += words[i].toLowerCase();
     } else {
       newString +=
