@@ -1,12 +1,13 @@
 # [@gld5000-cli/npm-init](https://www.npmjs.com/package/@gld5000-cli/npm-init)
 
 A CLI app to update your package.json and README.md ready for publishing on NPM
+
 ## Install
 
 ```
 npm i -D @gld5000-cli/npm-init
 ```
- 
+
 ## Example Usage
 
 ### Import (.mjs)
@@ -14,37 +15,37 @@ npm i -D @gld5000-cli/npm-init
 ```
 import { * as npmInit } from '@gld5000-cli/npm-init'
 ```
- 
+
 ### Example Input
 
 ```
 Add your code here...
 ```
- 
+
 ### Example Output
 
 ```
 ...
 ```
- 
+
 ## Update
 
 ```
 npm update @gld5000-cli/npm-init
 ```
- 
+
 ## Uninstall
 
 ```
 npm uninstall @gld5000-cli/npm-init
 ```
- 
-## Execute Directly from NPM 
+
+## Execute Directly from NPM
 
 ```
 npx @gld5000-cli/npm-init
 ```
- 
+
 ## License
 
 MIT License

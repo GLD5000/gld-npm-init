@@ -65,6 +65,11 @@ export async function readmeInit() {
     "Input",
     `Add your code here...`
   );
+    const outputExample = await answerStringQuestion(
+    "Output",
+    `Add your code here...`
+  );
+
   const updateExample = await answerStringQuestion(
     "Update",
     `npm update ${name}`
@@ -82,6 +87,7 @@ export async function readmeInit() {
     shouldAppend ? readme : "",
     header,
     `${description}`,
+    '',
     `## Install`,
     ...getScriptBlock(install),
     `## Example Usage`,
@@ -90,7 +96,7 @@ export async function readmeInit() {
     `### Example Input`,
     ...getScriptBlock(inputExample),
     `### Example Output`,
-    ...getScriptBlock(`...`),
+    ...getScriptBlock(outputExample),
     `## Update`,
     ...getScriptBlock(updateExample),
     `## Uninstall`,
@@ -104,7 +110,7 @@ export async function readmeInit() {
     license,
   ];
   const headerRegex = /(^#+[^\n\r]+)/gm;
-  const paragraph = lines.join("\n").trim().replaceAll(headerRegex,'$1\n');
+  const paragraph = lines.join("\n").trim().replaceAll(headerRegex,'$1\n') +'\n';
   console.clear();
   const shouldWrite =
     (await answerStringQuestion("Is this correct?\n" + paragraph, "y")) === "y";
