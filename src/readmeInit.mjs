@@ -118,7 +118,7 @@ export async function readmeInit() {
   
 }
 function getScriptBlock(input) {
-  return ["```", ...input.split(/[\n\r]+/), "```", ' '];
+  return ["```", ...input.split(/[\n\r]+/), "```", ''];
 }
 
 function checkBin() {
