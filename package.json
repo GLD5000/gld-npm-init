@@ -9,13 +9,13 @@
     "readme",
     "package"
   ],
-  "homepage": "https://github.com/GLD5000/npm-init#readme",
+  "homepage": "https://github.com/GLD5000/gld-npm-init#readme",
   "bugs": {
-    "url": "https://github.com/GLD5000/npm-init/issues"
+    "url": "https://github.com/GLD5000/gld-npm-init/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GLD5000/npm-init.git"
+    "url": "git+https://github.com/GLD5000/gld-npm-init.git"
   },
   "license": "MIT",
   "author": "GLD5000",
