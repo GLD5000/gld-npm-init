@@ -41,17 +41,45 @@ function getReadme() {
 export async function readmeInit() {
   const intro =
     "\n\nThis utility will walk you through creating a README.md file for your NPM package.\n\nIt only covers some useful items, and uses your package.json to generate defaults.\n\nPress ^C at any time to quit.\n\n";
+  console.clear();
   console.log(intro);
   const { name, description } = getPackageObject();
   const license = getLicense();
   const readme = getReadme();
   const hasBinExecutable = checkBin();
-  const header = await answerStringQuestion("Header", `# [${name}](https://www.npmjs.com/package/${name})`);
+  const shouldAppend =
+    (await answerStringQuestion(
+      "Replace existing README (or append)?",
+      "y"
+    )) !== "y";
+  const header = await answerStringQuestion(
+    "Header",
+    `# [${name}](https://www.npmjs.com/package/${name})`
+  );
   const install = await answerStringQuestion("Install", `npm i -D ${name}`);
-  const importExample = await answerStringQuestion("Import", `import { * as ${kebabToCamel(name.split("/")[1])} } from '${name}'`);
+  const importExample = await answerStringQuestion(
+    "Import",
+    `import { * as ${kebabToCamel(name.split("/")[1])} } from '${name}'`
+  );
+  const inputExample = await answerStringQuestion(
+    "Input",
+    `Add your code here...`
+  );
+  const updateExample = await answerStringQuestion(
+    "Update",
+    `npm update ${name}`
+  );
+  const uninstallExample = await answerStringQuestion(
+    "Uninstall",
+    `npm uninstall ${name}`
+  );
+  const binExample = await answerStringQuestion(
+    "Execute from NPM",
+    `npx ${name}`
+  );
 
   const lines = [
-    readme,
+    shouldAppend ? readme : "",
     header,
     `${description}`,
     `## Install`,
@@ -60,25 +88,31 @@ export async function readmeInit() {
     `### Import (.mjs)`,
     ...getScriptBlock(importExample),
     `### Example Input`,
-    ...getScriptBlock(`...`),
+    ...getScriptBlock(inputExample),
     `### Example Output`,
     ...getScriptBlock(`...`),
     `## Update`,
-    ...getScriptBlock(`npm update ${name}`),
+    ...getScriptBlock(updateExample),
     `## Uninstall`,
-    ...getScriptBlock(`npm uninstall ${name}`),
+    ...getScriptBlock(uninstallExample),
     hasBinExecutable
-      ? `## Execute Directly from NPM \n${getScriptBlock(`npx ${name}`).join(
+      ? `## Execute Directly from NPM \n${getScriptBlock(binExample).join(
           "\n"
         )}`
       : "",
     `## License`,
     license,
   ];
-  writeFile(lines.join("\n"));
+  const headerRegex = /(^#+[^\n\r]+)/gm;
+  const paragraph = lines.join("\n").trim().replaceAll(headerRegex,'$1\n');
+  console.clear();
+  const shouldWrite =
+    (await answerStringQuestion("Is this correct?\n" + paragraph, "y")) === "y";
+  shouldWrite && writeFile(paragraph);
+  
 }
 function getScriptBlock(input) {
-  return ["```", ...input.split(/[\n\r]+/), "```"];
+  return ["```", ...input.split(/[\n\r]+/), "```", ' '];
 }
 
 function checkBin() {
