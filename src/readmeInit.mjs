@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { answerStringQuestion } from "@gld5000-cli/readline";
 
 function getPackageObject() {
   const packageJsonContent = getFile("./package.json");
@@ -37,23 +38,27 @@ function getLicense() {
 function getReadme() {
   return getFile("./README.md");
 }
-export function readmeInit() {
+export async function readmeInit() {
+  const intro =
+    "\n\nThis utility will walk you through creating a README.md file for your NPM package.\n\nIt only covers some useful items, and uses your package.json to generate defaults.\n\nPress ^C at any time to quit.\n\n";
+  console.log(intro);
   const { name, description } = getPackageObject();
   const license = getLicense();
   const readme = getReadme();
   const hasBinExecutable = checkBin();
+  const header = await answerStringQuestion("Header", `# [${name}](https://www.npmjs.com/package/${name})`);
+  const install = await answerStringQuestion("Install", `npm i -D ${name}`);
+  const importExample = await answerStringQuestion("Import", `import { * as ${kebabToCamel(name.split("/")[1])} } from '${name}'`);
+
   const lines = [
     readme,
-    `# ${name}`,
+    header,
     `${description}`,
     `## Install`,
-    ...getScriptBlock(`npm i -D ${name}`),
+    ...getScriptBlock(install),
     `## Example Usage`,
-    ...getScriptBlock(`...`),
     `### Import (.mjs)`,
-    ...getScriptBlock(
-      `import { * as ${kebabToCamel(name.split("/")[1])} } from '${name}'`
-    ),
+    ...getScriptBlock(importExample),
     `### Example Input`,
     ...getScriptBlock(`...`),
     `### Example Output`,

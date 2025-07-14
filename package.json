@@ -24,5 +24,8 @@
   "main": "src/index.mjs",
   "scripts": {
     "test": "node test.mjs"
+  },
+  "dependencies": {
+    "@gld5000-cli/readline": "^1.x"
   }
 }
