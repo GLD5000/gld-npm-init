@@ -59,7 +59,7 @@ export async function readmeInit() {
   const install = await answerStringQuestion("Install", `npm i -D ${name}`);
   const importExample = await answerStringQuestion(
     "Import",
-    `import { * as ${kebabToCamel(name.split("/")[1])} } from '${name}'`
+    `import * as ${kebabToCamel(name.split("/")[1])} from '${name}'`
   );
   const inputExample = await answerStringQuestion(
     "Input",
