@@ -13,19 +13,29 @@ npm i -D @gld5000-cli/npm-init
 ### Import (.mjs)
 
 ```
-import { * as npmInit } from '@gld5000-cli/npm-init'
+import * as npmInit from '@gld5000-cli/npm-init'
 ```
 
 ### Example Input
 
 ```
-Add your code here...
+npx @gld5000-cli/npm-init
 ```
 
 ### Example Output
 
 ```
-Add your code here...
+This utility will walk you through creating a README.md file for your NPM package.
+
+It only covers some useful items, and uses your package.json to generate defaults.
+
+Press ^C at any time to quit.
+
+
+Replace existing README (or append)?: (y) n
+Header: (# [@gld5000-cli/npm-init](https://www.npmjs.com/package/@gld5000-cli/npm-init))
+Install: (npm i -D @gld5000-cli/npm-init)
+Import: (import * as npmInit from '@gld5000-cli/npm-init')
 ```
 
 ## Update
