@@ -43,10 +43,10 @@ export async function readmeInit() {
     "\n\nThis utility will walk you through creating a README.md file for your NPM package.\n\nIt only covers some useful items, and uses your package.json to generate defaults.\n\nPress ^C at any time to quit.\n\n";
   console.clear();
   console.log(intro);
-  const { name, description } = getPackageObject();
+  const { name, description, bin } = getPackageObject();
   const license = getLicense();
   const readme = getReadme();
-  const hasBinExecutable = checkBin();
+  const hasBinExecutable = bin !== undefined;
   const shouldAppend =
     (await answerStringQuestion(
       "Replace existing README (or append)?",
@@ -119,15 +119,6 @@ export async function readmeInit() {
 }
 function getScriptBlock(input) {
   return ["```", ...input.split(/[\n\r]+/), "```", ''];
-}
-
-function checkBin() {
-  try {
-    fs.accessSync("bin");
-    return true;
-  } catch (error) {
-    return false;
-  }
 }
 function kebabToCamel(kebabString) {
   const words = kebabString.trim().split("-");
